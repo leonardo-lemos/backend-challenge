@@ -1,43 +1,56 @@
-## Micronaut 2.4.2 Documentation
+# Desafio Wealth Systems para back-end
 
-- [User Guide](https://docs.micronaut.io/2.4.2/guide/index.html)
-- [API Reference](https://docs.micronaut.io/2.4.2/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/2.4.2/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
+Este repositório representa a solução do desafio **Wealth Systems para back-end** (disponível em [https://github.com/WealthSystems/backend-challenge](https://github.com/WealthSystems/backend-challenge)). 
 
----
+Ela foi desenvolvida em formato de microsserviço utilizando a linguagem Java 11 e também como base o framework Micronaut 2.4.2. Este foi escolhido 
+por ser um framework leve, rápido e que apresenta uma curva de aprendizado baixa.
 
-## Feature http-client documentation
+## Recursos da solução
 
-- [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
+- Suporte a Docker
+- Geração de pacote JAR usando GitHub CI
+- OpenAPI/Swagger
+- Versionamento de banco de dados
+- Paginação e ordenação de requisições
+- Testes automatizados
 
-## Feature openapi documentation
+## Construção e execução da aplicação
 
-- [Micronaut OpenAPI Support documentation](https://micronaut-projects.github.io/micronaut-openapi/latest/guide/index.html)
+### Utilizando um computador convecional
 
-- [https://www.openapis.org](https://www.openapis.org)
+Para executar os passos abaixo são necessárias as seguintes bibliotecas e ferramentas instaladas:
 
-## Feature jax-rs documentation
+- Java JDK 11
+- Maven 3.6 ou superior
+- PostgreSQL 9.6+
 
-- [Micronaut JAX-RS support documentation](https://micronaut-projects.github.io/micronaut-jaxrs/latest/guide/index.html)
+Com estas dependências instaladas, siga os seguintes passos:
 
-## Feature undertow-server documentation
+1. Defina os valores das seguintes variáveis de ambiente no seu sistema para acesso ao banco de dados:
+   1. **DB_HOST**: endereço da instância do banco de dados
+   2. **DB_NAME**: nome do banco de de dados
+   3. **DB_USERNAME**: nome de usuário do banco de dados
+   4. **DB_PASSWORD**: senha de acesso ao banco de dados
+2. Navegue até o diretório do projeto utilizando um terminal/console do sistema e execute o comando `mvn package`
+3. Navegue até o diretório `target` e execute a aplicação com o comando `java -jar backendchallenge-1.0.jar`
+4. Ao fim do carregamento da aplicação, acesse os endpoints dispostos no endereço `http://localhost:8080/`
 
-- [Micronaut Undertow Server documentation](https://micronaut-projects.github.io/micronaut-servlet/1.0.x/guide/index.html#undertow)
+### Utilizando Docker Compose
 
-## Feature hibernate-jpa documentation
+Para executar os passos abaixo são necessárias as seguintes bibliotecas e ferramentas instaladas:
 
-- [Micronaut Hibernate JPA documentation](https://micronaut-projects.github.io/micronaut-sql/latest/guide/index.html#hibernate)
+- Docker v20.00+
+- Docker Compose
 
-## Feature management documentation
+Com esta dependência instalada, siga os seguintes passos:
 
-- [Micronaut Management documentation](https://docs.micronaut.io/latest/guide/index.html#management)
+1. Navegue até o diretório do projeto utilizando um terminal/console do sistema e execute o comando `docker-compose up`
+2. Ao fim do processo de construção dos containers Docker, acesse os endpoints dispostos no endereço `http://localhost:8080/`
 
-## Feature jdbc-hikari documentation
+## Endpoints
 
-- [Micronaut Hikari JDBC Connection Pool documentation](https://micronaut-projects.github.io/micronaut-sql/latest/guide/index.html#jdbc)
+Esta aplicação possui suporte a OpenAPI. Para acessar a documentação gerada dos endpoints, rode a aplicação
+e acesse o endereço `http://localhost:8080/swagger/backend-challenge-1.0.yml`, copie o conteúdo e cole-o no seu editor
+Swagger favorito.
 
-## Feature testcontainers documentation
-
-- [https://www.testcontainers.org/](https://www.testcontainers.org/)
 
