@@ -16,7 +16,7 @@ por ser um framework leve, rápido e que apresenta uma curva de aprendizado baix
 
 ## Construção e execução da aplicação
 
-### Utilizando um computador convecional
+### Utilizando um computador convencional
 
 Para executar os passos abaixo são necessárias as seguintes bibliotecas e ferramentas instaladas:
 
@@ -50,7 +50,7 @@ Com esta dependência instalada, siga os seguintes passos:
 ## Endpoints
 
 Esta aplicação possui suporte a OpenAPI. Para acessar a documentação gerada dos endpoints, rode a aplicação
-e acesse o endereço `http://localhost:8080/swagger/backend-challenge-1.0.yml`, copie o conteúdo e cole-o no seu editor
+e acesse o endereço `http://localhost:8080/swagger/backend-challenge-1.0.yml`, copie o conteúdo e cole-o em seu editor
 Swagger favorito.
 
 
