@@ -1,7 +1,8 @@
-CREATE TABLE tbl_manufacturers (
-                                          id_manufacturer int8 NOT NULL,
-                                          nm_manufacturer varchar(255) NULL,
-                                          CONSTRAINT tbl_manufacturers_pkey PRIMARY KEY (id_manufacturer)
+CREATE TABLE tbl_manufacturers
+(
+    id_manufacturer int8 NOT NULL,
+    nm_manufacturer varchar(255) NULL,
+    CONSTRAINT tbl_manufacturers_pkey PRIMARY KEY (id_manufacturer)
 );
 
 CREATE SEQUENCE seq_manufacturers

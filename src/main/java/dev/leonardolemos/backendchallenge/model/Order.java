@@ -13,22 +13,21 @@ import java.util.List;
 @AttributeOverride(name = "id", column = @Column(name = "id_order"))
 public class Order extends BaseEntity {
 
-    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "ds_status")
     private OrderStatus status;
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_order")
+    @JoinColumn(name = "id_order", updatable = false)
     private List<ViewProductOrder> products;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "order")
+    @OneToOne( mappedBy = "order")
     private Consumer consumer;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "order")
+    @OneToOne(mappedBy = "order")
     private Payment payment;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "order")
+    @OneToOne(mappedBy = "order")
     private Delivery delivery;
 
     public Order() {

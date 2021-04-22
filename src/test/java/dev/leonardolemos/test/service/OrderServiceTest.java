@@ -68,7 +68,7 @@ public class OrderServiceTest {
 
         assertNotNull(order);
         assertEquals(OrderStatus.PENDING_CONFIRMATION, order.getStatus());
-        assertEquals(1, order.getId());
+        assertEquals(true, order.getId() > 0);
 
         assertNotNull(order.getProducts());
         assertEquals(1, order.getProducts().size());

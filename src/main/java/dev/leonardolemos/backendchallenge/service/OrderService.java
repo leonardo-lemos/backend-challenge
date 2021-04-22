@@ -90,7 +90,7 @@ public class OrderService {
     public void confirmOrder(long id) {
         OrderStatus orderStatus = orderRepository.findStatusById(id).orElse(null);
 
-        if(orderStatus != null && orderStatus != OrderStatus.CANCELLED) {
+        if (orderStatus != null && orderStatus != OrderStatus.CANCELLED) {
             orderRepository.update(id, OrderStatus.CONFIRMED);
         }
     }

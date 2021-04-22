@@ -1,8 +1,6 @@
 package dev.leonardolemos.test.validation;
 
-import dev.leonardolemos.backendchallenge.model.Payment;
 import dev.leonardolemos.backendchallenge.model.ProductOrder;
-import dev.leonardolemos.backendchallenge.model.enumeration.PaymentMode;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import io.micronaut.validation.validator.Validator;
 import org.junit.jupiter.api.Test;

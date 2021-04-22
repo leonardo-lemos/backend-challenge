@@ -66,7 +66,11 @@ public class Payment extends BaseEntity {
     }
 
     public BigDecimal getAmount() {
-        return amount.setScale(2, RoundingMode.HALF_UP);
+        if(amount != null) {
+            return amount.setScale(2, RoundingMode.HALF_UP);
+        }
+
+        return null;
     }
 
     public void setAmount(BigDecimal amount) {
@@ -82,7 +86,11 @@ public class Payment extends BaseEntity {
     }
 
     public BigDecimal getInstallmentValue() {
-        return installmentValue.setScale(2, RoundingMode.HALF_UP);
+        if(installmentValue != null) {
+            return installmentValue.setScale(2, RoundingMode.HALF_UP);
+        }
+
+        return null;
     }
 
     public void setInstallmentValue(BigDecimal installmentValue) {

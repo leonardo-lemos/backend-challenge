@@ -1,23 +1,18 @@
 package dev.leonardolemos.test.validation;
 
 import dev.leonardolemos.backendchallenge.model.Product;
-import io.micronaut.http.HttpRequest;
-import io.micronaut.http.HttpStatus;
-import io.micronaut.http.client.exceptions.HttpClientResponseException;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import io.micronaut.validation.validator.Validator;
-import org.junit.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
 import javax.validation.ConstraintViolation;
-
 import java.math.BigDecimal;
 import java.util.Set;
 
 import static dev.leonardolemos.test.Constants.STRING_WITH_258_CHAR;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @MicronautTest
 public class ProductValidationTest {

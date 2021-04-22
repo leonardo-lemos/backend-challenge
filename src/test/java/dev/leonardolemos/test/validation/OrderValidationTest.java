@@ -1,6 +1,5 @@
 package dev.leonardolemos.test.validation;
 
-import dev.leonardolemos.backendchallenge.model.Manufacturer;
 import dev.leonardolemos.backendchallenge.model.Order;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import io.micronaut.validation.validator.Validator;

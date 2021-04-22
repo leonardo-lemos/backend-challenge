@@ -1,10 +1,6 @@
 package dev.leonardolemos.test.controller;
 
 import dev.leonardolemos.backendchallenge.model.Manufacturer;
-import dev.leonardolemos.backendchallenge.model.Order;
-import dev.leonardolemos.backendchallenge.model.Product;
-import dev.leonardolemos.backendchallenge.repository.ManufacturerRepository;
-import io.micronaut.core.type.Argument;
 import io.micronaut.data.model.Page;
 import io.micronaut.http.HttpHeaders;
 import io.micronaut.http.HttpRequest;
@@ -14,12 +10,10 @@ import io.micronaut.http.client.HttpClient;
 import io.micronaut.http.client.annotation.Client;
 import io.micronaut.http.client.exceptions.HttpClientResponseException;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import javax.inject.Inject;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 

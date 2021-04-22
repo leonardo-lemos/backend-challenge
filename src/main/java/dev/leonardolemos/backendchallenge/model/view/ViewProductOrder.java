@@ -60,7 +60,11 @@ public class ViewProductOrder {
     }
 
     public BigDecimal getUnitPrice() {
-        return unitPrice.setScale(2, RoundingMode.HALF_UP);
+        if(unitPrice != null) {
+            return unitPrice.setScale(2, RoundingMode.HALF_UP);
+        }
+
+        return null;
     }
 
     public void setUnitPrice(BigDecimal unitPrice) {
@@ -68,7 +72,11 @@ public class ViewProductOrder {
     }
 
     public BigDecimal getAmount() {
-        return amount.setScale(2, RoundingMode.HALF_UP);
+        if(amount != null) {
+            return amount.setScale(2, RoundingMode.HALF_UP);
+        }
+
+        return null;
     }
 
     public void setAmount(BigDecimal amount) {

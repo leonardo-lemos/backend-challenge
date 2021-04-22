@@ -43,6 +43,7 @@ public class ConsumerValidationTest {
 
         assertEquals(1, violations.size());
     }
+
     @Test
     public void supply_null_name() {
         Consumer entity = new Consumer();
@@ -77,7 +78,7 @@ public class ConsumerValidationTest {
 
         Set<ConstraintViolation<Consumer>> violations = validator.validate(entity);
 
-        assertEquals(1, violations.size());
+        assertEquals(2, violations.size());
     }
 
     @Test
@@ -89,7 +90,7 @@ public class ConsumerValidationTest {
 
         Set<ConstraintViolation<Consumer>> violations = validator.validate(entity);
 
-        assertEquals(2, violations.size());
+        assertEquals(1, violations.size());
     }
 
     @Test

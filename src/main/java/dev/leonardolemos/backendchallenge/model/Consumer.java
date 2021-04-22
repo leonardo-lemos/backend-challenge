@@ -29,7 +29,7 @@ public class Consumer extends BaseEntity {
     private String email;
 
     @JsonIgnore
-    @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_order", referencedColumnName = "id_order", foreignKey = @ForeignKey(name = "fk_consumer_x_order_01"))
     private Order order;
 

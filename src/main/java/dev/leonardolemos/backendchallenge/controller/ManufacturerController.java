@@ -2,7 +2,6 @@ package dev.leonardolemos.backendchallenge.controller;
 
 import dev.leonardolemos.backendchallenge.model.Manufacturer;
 import dev.leonardolemos.backendchallenge.repository.ManufacturerRepository;
-import io.micronaut.data.model.Page;
 import io.micronaut.data.model.Pageable;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Body;
@@ -20,7 +19,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
-import javax.ws.rs.core.HttpHeaders;
 import java.net.URI;
 
 @Controller("/manufacturers")

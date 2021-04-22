@@ -1,6 +1,5 @@
 package dev.leonardolemos.test.validation;
 
-import dev.leonardolemos.backendchallenge.model.Consumer;
 import dev.leonardolemos.backendchallenge.model.Delivery;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import io.micronaut.validation.validator.Validator;
@@ -10,9 +9,7 @@ import javax.inject.Inject;
 import javax.validation.ConstraintViolation;
 import java.util.Set;
 
-import static dev.leonardolemos.test.Constants.STRING_WITH_258_CHAR;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @MicronautTest
 public class DeliveryValidationTest {

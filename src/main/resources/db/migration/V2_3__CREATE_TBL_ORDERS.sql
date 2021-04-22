@@ -1,7 +1,8 @@
-CREATE TABLE tbl_orders (
-                                   id_order int8 NOT NULL,
-                                   ds_status varchar(255) NULL,
-                                   CONSTRAINT tbl_orders_pkey PRIMARY KEY (id_order)
+CREATE TABLE tbl_orders
+(
+    id_order  int8         NOT NULL,
+    ds_status varchar(255) NULL,
+    CONSTRAINT tbl_orders_pkey PRIMARY KEY (id_order)
 );
 
 CREATE SEQUENCE seq_orders
