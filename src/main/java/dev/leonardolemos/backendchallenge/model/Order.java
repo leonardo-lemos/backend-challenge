@@ -22,13 +22,13 @@ public class Order extends BaseEntity {
     @JoinColumn(name = "id_order")
     private List<ViewProductOrder> products;
 
-    @OneToOne(mappedBy = "order")
+    @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "order")
     private Consumer consumer;
 
-    @OneToOne(mappedBy = "order")
+    @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "order")
     private Payment payment;
 
-    @OneToOne(mappedBy = "order")
+    @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "order")
     private Delivery delivery;
 
     public Order() {

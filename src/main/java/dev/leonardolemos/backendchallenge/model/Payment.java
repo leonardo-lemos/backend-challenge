@@ -8,6 +8,7 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Entity
 @Table(name = "tbl_payments")
@@ -65,7 +66,7 @@ public class Payment extends BaseEntity {
     }
 
     public BigDecimal getAmount() {
-        return amount;
+        return amount.setScale(2, RoundingMode.HALF_UP);
     }
 
     public void setAmount(BigDecimal amount) {
@@ -81,7 +82,7 @@ public class Payment extends BaseEntity {
     }
 
     public BigDecimal getInstallmentValue() {
-        return installmentValue;
+        return installmentValue.setScale(2, RoundingMode.HALF_UP);
     }
 
     public void setInstallmentValue(BigDecimal installmentValue) {

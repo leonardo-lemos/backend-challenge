@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Entity
 @Immutable
@@ -16,7 +17,7 @@ import java.math.BigDecimal;
 public class ViewProductOrder {
 
     @Id
-    private Long id;
+    private long id;
 
     @Column(name = "ds_name")
     private String name;
@@ -50,16 +51,16 @@ public class ViewProductOrder {
         this.units = units;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
     public BigDecimal getUnitPrice() {
-        return unitPrice;
+        return unitPrice.setScale(2, RoundingMode.HALF_UP);
     }
 
     public void setUnitPrice(BigDecimal unitPrice) {
@@ -67,7 +68,7 @@ public class ViewProductOrder {
     }
 
     public BigDecimal getAmount() {
-        return amount;
+        return amount.setScale(2, RoundingMode.HALF_UP);
     }
 
     public void setAmount(BigDecimal amount) {

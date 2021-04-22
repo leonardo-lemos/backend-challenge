@@ -7,7 +7,7 @@ import dev.leonardolemos.backendchallenge.model.enumeration.PaymentMode;
 import dev.leonardolemos.backendchallenge.model.view.ViewProductOrder;
 import dev.leonardolemos.backendchallenge.repository.ManufacturerRepository;
 import dev.leonardolemos.backendchallenge.repository.ProductRepository;
-import io.micronaut.core.type.Argument;
+import io.micronaut.data.model.Page;
 import io.micronaut.http.HttpHeaders;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;
@@ -75,11 +75,11 @@ public class OrderControllerTest {
 
         ViewProductOrder vwProduct1 = new ViewProductOrder();
         vwProduct1.setId(product1.getId());
-        vwProduct1.setAmount(BigDecimal.ONE);
+        vwProduct1.setUnits(BigDecimal.ONE);
 
         ViewProductOrder vwProduct2 = new ViewProductOrder();
-        vwProduct1.setId(product2.getId());
-        vwProduct1.setAmount(BigDecimal.ONE);
+        vwProduct2.setId(product2.getId());
+        vwProduct2.setUnits(BigDecimal.ONE);
 
         productList.add(vwProduct1);
         productList.add(vwProduct2);
@@ -88,11 +88,15 @@ public class OrderControllerTest {
         Order order1 = new Order();
         order1.setPayment(new Payment(PaymentMode.BANKSLIP, 1));
         order1.setDelivery(new Delivery(DeliveryMode.INSTORE_WITHDRAW));
+        order1.setStatus(OrderStatus.PENDING_CONFIRMATION);
+        order1.setConsumer(new Consumer("John Doe", "+5527998764561", "jhon@doe.com"));
         order1.setProducts(productList);
 
         Order order2 = new Order();
         order2.setPayment(new Payment(PaymentMode.BANKSLIP, 2));
         order2.setDelivery(new Delivery(DeliveryMode.INSTORE_WITHDRAW));
+        order2.setStatus(OrderStatus.PENDING_CONFIRMATION);
+        order2.setConsumer(new Consumer("John Doe", "+5527998764561", "jhon@doe.com"));
         order2.setProducts(productList);
 
         HttpRequest request = HttpRequest.POST("/orders", order1);
@@ -115,7 +119,7 @@ public class OrderControllerTest {
         assertEquals(2, order.getId());
 
 
-        request = HttpRequest.PUT("/orders/" + id + "/confirm", null);
+        request = HttpRequest.PUT("/orders/" + id + "/confirm", new Order());
         response = client.toBlocking().exchange(request);
         assertEquals(HttpStatus.NO_CONTENT, response.getStatus());
 
@@ -124,7 +128,7 @@ public class OrderControllerTest {
         assertEquals(OrderStatus.CONFIRMED, order.getStatus());
 
 
-        request = HttpRequest.PUT("/orders/" + id + "/cancel", null);
+        request = HttpRequest.PUT("/orders/" + id + "/cancel", new Order());
         response = client.toBlocking().exchange(request);
         assertEquals(HttpStatus.NO_CONTENT, response.getStatus());
 
@@ -132,33 +136,21 @@ public class OrderControllerTest {
         order = client.toBlocking().retrieve(request, Order.class);
         assertEquals(OrderStatus.CANCELLED, order.getStatus());
 
-        request = HttpRequest.GET("/products");
-        List<Order> orders = client.toBlocking().retrieve(request, Argument.of(List.class, Order.class));
+        request = HttpRequest.GET("/orders");
+        Page orderPage = client.toBlocking().retrieve(request, Page.class);
+        List<Order> orders = ((List<Order>) orderPage.getContent());
 
         assertEquals(2, orders.size());
 
-        request = HttpRequest.GET("/products?size=1");
-        orders = client.toBlocking().retrieve(request, Argument.of(List.class, Order.class));
+        request = HttpRequest.GET("/orders?size=1");
+        orderPage = client.toBlocking().retrieve(request, Page.class);
+        orders = ((List<Order>) orderPage.getContent());
 
         assertEquals(1, orders.size());
-        assertEquals(1, orders.get(0).getId());
-
-        request = HttpRequest.GET("/products?size=1&sort=id,DESC");
-        orders = client.toBlocking().retrieve(request, Argument.of(List.class, Product.class));
-
-        assertEquals(1, orders.size());
-        assertEquals(2, orders.get(0).getId());
-
-        // cleanup:
-        for (Long productId : ids) {
-            request = HttpRequest.DELETE("/products/" + productId);
-            response = client.toBlocking().exchange(request);
-            assertEquals(HttpStatus.NO_CONTENT, response.getStatus());
-        }
     }
 
     protected Long entityId(HttpResponse response) {
-        String path = "/products/";
+        String path = "/orders/";
         String value = response.header(HttpHeaders.LOCATION);
         if (value == null) {
             return null;

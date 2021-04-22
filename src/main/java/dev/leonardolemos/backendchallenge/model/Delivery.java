@@ -32,6 +32,7 @@ public class Delivery extends BaseEntity {
     }
 
     public Delivery(DeliveryMode deliveryMode) {
+        this.mode = deliveryMode;
     }
 
     public DeliveryMode getMode() {

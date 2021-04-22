@@ -9,12 +9,14 @@ import dev.leonardolemos.backendchallenge.repository.*;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.transaction.Transactional;
+import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 @Singleton
 public class OrderService {
+
     @Inject
     OrderRepository orderRepository;
     @Inject
@@ -29,7 +31,7 @@ public class OrderService {
     DeliveryRepository deliveryRepository;
 
     @Transactional
-    public Order saveOrder(List<ViewProductOrder> orderedProducts, Consumer consumer, Payment payment, Delivery delivery) {
+    public Order saveOrder(@NotEmpty List<ViewProductOrder> orderedProducts, Consumer consumer, Payment payment, Delivery delivery) {
         List<ProductOrder> productOrders = new ArrayList<>();
         BigDecimal totalAmount = BigDecimal.ZERO;
 
@@ -48,6 +50,10 @@ public class OrderService {
             productOrder.setAmount(productAmount);
             productOrder.setUnits(op.getUnits());
 
+            op.setAmount(productAmount);
+            op.setUnitPrice(product.getUnitPrice());
+            op.setName(product.getName());
+
             productOrders.add(productOrder);
         }
 
@@ -63,9 +69,14 @@ public class OrderService {
         delivery.setOrder(order);
         consumer.setOrder(order);
 
-        paymentRepository.save(payment);
-        deliveryRepository.save(delivery);
-        consumerRepository.save(consumer);
+        payment = paymentRepository.save(payment);
+        delivery = deliveryRepository.save(delivery);
+        consumer = consumerRepository.save(consumer);
+
+        order.setConsumer(consumer);
+        order.setDelivery(delivery);
+        order.setPayment(payment);
+        order.setProducts(orderedProducts);
 
         for (ProductOrder po : productOrders) {
             po.setOrder(order);
@@ -73,7 +84,7 @@ public class OrderService {
             productOrderRepository.save(po);
         }
 
-        return orderRepository.findById(order.getId()).orElse(null);
+        return order;
     }
 
     public void confirmOrder(long id) {

@@ -35,7 +35,7 @@ public class ManufacturerController {
     @ApiResponse(description = "A Page with Manufacturers and Page metadata", responseCode = "200", content = @Content(mediaType = "application/json"))
     @ApiResponse(description = "Invalid query criteria", responseCode = "400")
     @Tag(name = "Manufacturer")
-    public Page<Manufacturer> listAll(
+    public Iterable<Manufacturer> listAll(
             @Parameter(description = "Query, Paging and Sorting Criteria") Pageable pageable) {
         return manufacturerRepository.findAll(pageable);
     }
