@@ -37,10 +37,11 @@ public class Product extends BaseEntity {
     public Product() {
     }
 
-    public Product(String name, String description, String barcode, Manufacturer manufacturer) {
+    public Product(String name, String description, String barcode, BigDecimal unitPrice, Manufacturer manufacturer) {
         this.name = name;
         this.description = description;
         this.barcode = barcode;
+        this.unitPrice = unitPrice;
         this.manufacturer = manufacturer;
     }
 
